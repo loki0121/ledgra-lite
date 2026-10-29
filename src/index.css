@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens. Every color in the UI comes from these variables, so a
+ * full re-brand only touches this block (or Settings → Branding at runtime).
+ * Values are space-separated RGB channels so Tailwind can apply opacity.
+ */
+:root {
+  --bg: 244 245 247;
+  --surface: 255 255 255;
+  --surface-2: 249 250 251;
+  --border: 228 231 236;
+  --border-strong: 208 213 221;
+  --fg: 16 24 40;
+  --fg-2: 52 64 84;
+  --muted: 93 102 121;
+  --primary: 47 75 224;
+  --primary-fg: 255 255 255;
+  --primary-text: 31 59 196;
+  --warning: 181 71 8;
+  --warning-soft: 254 240 230;
+  --danger: 180 35 24;
+  --danger-soft: 254 228 226;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 10 12 17;
+  --surface: 19 22 30;
+  --surface-2: 26 30 40;
+  --border: 38 43 56;
+  --border-strong: 55 62 80;
+  --fg: 237 239 243;
+  --fg-2: 203 208 218;
+  --muted: 152 160 176;
+  --primary-text: 150 168 245;
+  --warning: 251 157 86;
+  --warning-soft: 64 35 15;
+  --danger: 253 128 115;
+  --danger-soft: 70 22 20;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface shadow-card;
+  }
+  .label-caps {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-muted;
+  }
+}
+
+/* Scroll boxes contain their absolutely positioned children (e.g. .sr-only labels). */
+.overflow-x-auto,
+.overflow-y-auto {
+  position: relative;
+}
+
+/* Recharts: keep focus rings off SVG wrappers. */
+.recharts-wrapper *:focus {
+  outline: none;
+}
